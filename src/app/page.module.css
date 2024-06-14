@@ -7,6 +7,14 @@
   min-height: 100vh;
 }
 
+.title {
+  font-size: 0.95rem;
+  max-width: var(--max-width);
+  width: 100%;
+  z-index: 2;
+  font-family: var(--font-mono);
+}
+
 .description {
   display: inherit;
   justify-content: inherit;
@@ -29,7 +37,7 @@
   position: relative;
   margin: 0;
   padding: 1rem;
-  background-color: rgba(var(--callout-rgb), 0.5);
+  /* background-color: rgba(var(--callout-rgb), 0.5); */
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
 }
@@ -40,6 +48,7 @@
 }
 
 .grid {
+  gap: 2rem;
   display: grid;
   grid-template-columns: repeat(4, minmax(25%, auto));
   max-width: 100%;
@@ -47,11 +56,15 @@
 }
 
 .card {
+  text-align: center;
   padding: 1rem 1.2rem;
   border-radius: var(--border-radius);
-  background: rgba(var(--card-rgb), 0);
-  border: 1px solid rgba(var(--card-border-rgb), 0);
+  background: rgb(242, 240, 240);
+  border: 1px solid rgb(255, 255, 255);
   transition: background 200ms, border 200ms;
+  gap: 20px;
+  /* gap: 1rem; */
+  /* gap: 2vh; */
 }
 
 .card span {
@@ -210,7 +223,7 @@
   }
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   .vercelLogo {
     filter: invert(1);
   }
@@ -218,7 +231,7 @@
   .logo {
     filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
   }
-}
+} */
 
 @keyframes rotate {
   from {
