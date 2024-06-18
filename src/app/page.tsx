@@ -1,11 +1,11 @@
-import ProductsContainer from "./containers/ProductsContainer/ProductsContainer";
+import ProductsContainer from "../containers/ProductsContainer/ProductsContainer";
 import RootLayout from "./layout";
 
 const Home = () => {
   return (
-    <RootLayout>
-      <ProductsContainer />;
-    </RootLayout>
+    // <RootLayout>
+      <ProductsContainer />
+    // </RootLayout>
   )
 };
 

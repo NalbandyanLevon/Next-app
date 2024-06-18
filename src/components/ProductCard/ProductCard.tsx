@@ -3,7 +3,8 @@
 import { FC } from "react";
 import AddToCard from "../AddToCard/AddToCard";
 import { EachProduct } from "@/types/types";
-import styles from "../../page.module.css";
+// import styles from "../../page.module.css";
+import styles from '@/app/page.module.css'
 import Image from "next/image";
 
 interface IProps {

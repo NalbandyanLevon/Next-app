@@ -2,8 +2,9 @@
 
 import { EachProduct } from "@/types/types";
 import React, { useEffect } from "react";
-import styles from "./ProductsContainer.module.css";
-import ProductCard from "@/app/components/ProductCard";
+// import styles from "./ProductsContainer.module.css";
+import styles from './ProductsContainer.module.css'
+import ProductCard from "@/components/ProductCard";
 import { useQuery } from "@tanstack/react-query";
 import { axiosProducts } from "@/services/axiosProducts";
 
