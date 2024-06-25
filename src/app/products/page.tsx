@@ -1,26 +1,33 @@
-'use client'
+"use client";
 
-import { EachProduct } from "@/types/types";
-import React, { useEffect } from "react";
-// import styles from "./ProductsContainer.module.css";
-import styles from './ProductsContainer.module.css'
+import React, { FC, Suspense, useEffect } from "react";
+import styles from "./page.module.css";
 import ProductCard from "@/components/ProductCard";
 import { useQuery } from "@tanstack/react-query";
 import { axiosProducts } from "@/services/axiosProducts";
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import Link from "next/link";
 
-const ProductsContainer =  () => {
-  const { data, error, isLoading } = useQuery<EachProduct[]>({
-    queryKey: ["products"],
+const ProductsContainer = () => {
+  const router = useRouter();
+  useEffect(() => {
+    if (!Cookies.get("token")?.length) {
+      router.push("/login");
+    }
+  }, [Cookies]);
+
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["productsData"],
     queryFn: axiosProducts,
   });
 
-  console.log(data);
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   if (data) {
     return (
-      <>
+      <Suspense fallback={<div>...Loading</div>}>
         <div>Products</div>
         <p>{new Date().toLocaleString()}</p>
         <div className={styles.grid}>
@@ -28,7 +35,9 @@ const ProductsContainer =  () => {
             <ProductCard eachProduct={eachProduct} key={eachProduct.id} />
           ))}
         </div>
-      </>
+        <Link href={"/login"}>Exit
+        </Link>
+      </Suspense>
     );
   }
 };

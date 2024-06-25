@@ -1,3 +1,3 @@
-import ProductsContainer from "./ProductsContainer/ProductsContainer";
+import ProductsContainer from "../app/products/page";
 
 export default ProductsContainer
