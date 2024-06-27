@@ -12,7 +12,7 @@ import Link from "next/link";
 const ProductsContainer = () => {
   const router = useRouter();
   useEffect(() => {
-    if (!Cookies.get("token")?.length) {
+    if (!Cookies.get("authToken")?.length) {
       router.push("/login");
     }
   }, [Cookies]);

@@ -12,12 +12,12 @@ const LoginPage: React.FC = () => {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const [token, setToken] = useState(Cookies.get("token"));
   useEffect(() => {
-    if (token) {
-      Cookies.remove("token");
-    }
-  }, [Cookies.get("token")]);
+    if (Cookies.get("authToken")) {
+      console.log("mtav useEffect");
+      router.push("/protected");
+    } else router.push("/login");
+  }, [router]);
 
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -27,9 +27,9 @@ const LoginPage: React.FC = () => {
         email,
         password
       );
-      const token = await userCredential.user.getIdToken();
-      console.log(token);
-      Cookies.set(`token`, `${token}`, { path: "/" });
+      const authToken = await userCredential.user.getIdToken();
+      console.log(authToken);
+      Cookies.set(`authToken`, `${authToken}`, { path: "/" });
       router.push("/products");
     } catch (error) {
       console.error("Login failed", error);

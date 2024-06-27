@@ -2,9 +2,11 @@
 
 import { useState, FormEvent } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebaseConfig";
+import { auth } from "../../../firebaseConfig";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import GoogleSignUp from "../GoogleSignUp/GoogleSignUp";
+import PhoneSignUp from "../PhoneSignUp/PhoneSignUp";
 
 const SignUp = () => {
   const [email, setEmail] = useState<string>("");
@@ -20,8 +22,8 @@ const SignUp = () => {
         email,
         password
       );
-      const token = await newUserCredential.user.getIdToken();
-      Cookies.set(`token`, `${token}`, { path: "/" });
+      const authToken = await newUserCredential.user.getIdToken();
+      Cookies.set(`authToken`, `${authToken}`, { path: "/" });
       router.push("/products");
     } catch (err: any) {
       setError(err.message);
@@ -46,6 +48,8 @@ const SignUp = () => {
         />
         <button type="submit">Sign Up</button>
       </form>
+      <GoogleSignUp />
+      <PhoneSignUp />
       {error && <p>{error}</p>}
     </div>
   );
